@@ -1,9 +1,8 @@
-from rest_framework import status, mixins, viewsets
+from recipes.models import Cart, Favorite, Ingredient, Subscription
+from rest_framework import mixins, status, viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from recipes.models import (
-    Favorite, Cart, Ingredient, Subscription, User
-)
+
 from .serializers import IngredientSerializer
 
 
@@ -25,9 +24,10 @@ class FavoritesView(APIView):
 
 
 class PurchasesView(APIView):
-
     def get(self, request, format=None):
-        purchases = [purchase for purchase in Cart.objects.filter(customer=request.user)]
+        purchases = [
+            purchase for purchase in Cart.objects.filter(customer=request.user)
+        ]
         return Response(purchases)
 
     def post(self, request, format=None):

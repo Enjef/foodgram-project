@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.contrib.admin.decorators import register
-from recipes.models import (
-    Ingredient, RecipeIngredient, Subscription, Tag, Recipe, Favorite, Cart
-)
 from django.db.models.aggregates import Count
+
+from recipes.models import (Cart, Favorite, Ingredient, Recipe,
+                            RecipeIngredient, Subscription, Tag)
 
 
 @register(Ingredient)
@@ -67,8 +67,8 @@ class RecipeAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         qs = super().get_queryset(request)
         qs = qs.annotate(
-            recipe_follower_count=Count('following')
-            ).order_by('-recipe_follower_count')
+            recipe_follower_count=Count('following')).order_by(
+                '-recipe_follower_count')
         return qs
 
     def recipe_follower_count(self, obj):

@@ -1,14 +1,10 @@
-from django.views.generic import CreateView
-from django.contrib.auth.views import (
-    LoginView, LogoutView ,PasswordResetView, PasswordChangeView
-)
-
+from django.contrib.auth.views import (LoginView, LogoutView,
+                                       PasswordChangeView, PasswordResetView)
 from django.urls import reverse_lazy
+from django.views.generic import CreateView
 
-from .forms import (
-    CreationForm, CustomAuthenticationForm, CustomPasswordResetForm,
-    CustomPasswordChangeForm,
-)
+from .forms import (CreationForm, CustomAuthenticationForm,
+                    CustomPasswordChangeForm, CustomPasswordResetForm)
 
 
 class SignUp(CreateView):

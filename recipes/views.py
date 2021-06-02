@@ -1,13 +1,14 @@
-from recipes.models import (
-    Cart, Ingredient, Tag, User, Recipe, Subscription, RecipeIngredient
-)
-from django.shortcuts import get_object_or_404, render
-from django.views.generic.list import ListView
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import RecipeForm
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, render
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic.list import ListView
+
+from recipes.models import (Cart, Ingredient, Recipe, RecipeIngredient,
+                            Subscription, Tag, User)
+
+from .forms import RecipeForm
 
 
 class RecipeListView(ListView):
@@ -76,8 +77,7 @@ class ProfileView(RecipeListView):
     def get_context_data(self, **kwargs):
         kwargs.update({
             'page_title': self._get_page_title(),
-            'author': self.user,
-            })
+            'author': self.user})
         context = super().get_context_data(**kwargs)
         return context
 
@@ -237,7 +237,7 @@ def shoping_list_view(request):
         out.append(' '.join([
             item,
             str(ingredients[item][0]),
-            ingredients[item][1]])+'\n'
+            ingredients[item][1]]) + '\n'
         )
     out = ''.join(sorted(out))
     filename = "my_shoping_list.txt"

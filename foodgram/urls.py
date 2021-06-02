@@ -1,9 +1,8 @@
-from django.contrib import admin
-from django.urls import path, include
-from rest_framework.urlpatterns import format_suffix_patterns
 from django.conf import settings
-from django.conf.urls.static import static
 from django.conf.urls import handler404, handler500  # noqa
+from django.conf.urls.static import static
+from django.contrib import admin
+from django.urls import include, path
 from recipes.views import about, tech
 
 handler404 = 'recipes.views.page_not_found' # noqa
