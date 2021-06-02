@@ -59,10 +59,7 @@ jobs:
         passphrase: ${{ secrets.PASSPHRASE }}
         script: |
           sudo docker pull enjefd/foodgram-project:latest
-<<<<<<< HEAD
           sudo docker stop $(sudo docker ps -a -q)
-=======
->>>>>>> 065be2558480cd1ba6a97d30f1e026b75c80a159
           sudo docker run --rm -d -p 5000:5000 enjefd/foodgram-project:latest
 
   send_message:
