@@ -21,7 +21,7 @@ foodgram-project
 - postgres:12.4
 
 ### Запуск проекта
-Выполните команды:
+Выполните команды в облаке:
 ```
 docker-compose up -d --build
 docker-compose exec web python manage.py makemigrations api --noinput
