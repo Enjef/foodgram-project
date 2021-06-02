@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# raw data
+static
+media
+sent_emails
+steps.txt

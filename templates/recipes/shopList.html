@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load recipe_extras %}
+
+{% block page_title %}
+    {{ page_title }}
+{% endblock %}
+
+{% block static_css %}
+    <link rel="stylesheet" href="{% static 'pages/shopList.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="main__header">
+        <h1 class="main__title">Список покупок</h1>
+    </div>
+    <div class="card-list card-list_column">
+        <ul class="shopping-list">
+            {% for item in cart_list %}
+                <li class="shopping-list__item" data-id="{{ item.recipe.id }}">
+                    <div class="recipe recipe_reverse">
+                        {% if item.recipe.image %}
+                            <img src="{{ item.recipe.image.url }}" alt="{{ item.recipe.name }}" class="recipe__image recipe__image_big">
+                        {% else %}
+                            <img src="{% static 'no_image.png' %}" alt="{{ item.recipe.name }}" class="recipe__image recipe__image_big">
+                        {% endif %}
+                        <h3 class="recipe__title">{{ item.recipe.title }}</h3>
+                        <p class="recipe__text"><span class="icon-time"></span> {{ item.recipe.time }} мин.</p>
+                    </div>
+                    <a href="#" class="shopping-list__button link">Удалить</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'shoping_list_txt' %}"><button class="button button_style_blue">Скачать список</button></a>
+
+        {% if page_obj.has_other_pages %}
+            {% include 'includes/paginator.html'  with items=page_obj paginator=paginator %}
+        {% endif %}
+    </div>
+
+
+{% endblock %}
+
+{% block static_js %}
+<script src="{% static 'js/config/config.js' %}"></script>
+<script src="{% static 'js/components/Header.js' %}"></script>
+<script src="{% static 'js/components/ShopList.js' %}"></script>
+<script src="{% static 'js/api/Api.js' %}"></script>
+<script src="{% static 'js/templates/recipes/shopList.js' %}"></script>
+{% endblock %}
