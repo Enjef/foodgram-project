@@ -23,12 +23,7 @@ foodgram-project
 ### Запуск проекта
 Выполните команды в облаке:
 ```
-docker-compose up -d --build
-docker-compose exec web python manage.py makemigrations api --noinput
-docker-compose exec web python manage.py migrate --noinput
-docker-compose exec web python manage.py collectstatic --no-input
-docker-compose exec web python manage.py loaddata ingredients.json
-docker-compose exec web python manage.py createsuperuser
+sudo docker-compose exec web python manage.py createsuperuser
 ```
 ### DockerHub
 Образ foodgram-project доступен на DockerHub: enjefd/foodgram-project:latest
