@@ -1,4 +1,4 @@
-![example workflow](https://github.com/enjef/foodgram-project/actions/workflows/yamdb_workflow.yml/badge.svg)
+![example workflow](https://github.com/enjef/foodgram-project/actions/workflows/foodgram_workflow.yml/badge.svg)
 # Проект: foodgram-project
 foodgram-project
 
@@ -7,7 +7,7 @@ foodgram-project
 Проект foodgram собирает рецепты авторов. 
 Пользователи могут подписываться на рецепты и авторов, создавать свои рецепты, добавлять рецепты в список покупок и распечатывать список необходимых ингредиентов.
 
-В этом проекте настроен Continuous Integration и Continuous Deployment для YaMDB, при пуше в репозиторий происходит:
+В этом проекте настроен Continuous Integration и Continuous Deployment для foodgram, при пуше в репозиторий происходит:
 
 - автоматический запуск тестов
 - обновление образов на Docker Hub
@@ -31,7 +31,7 @@ docker-compose exec web python manage.py loaddata ingredients.json
 docker-compose exec web python manage.py createsuperuser
 ```
 ### DockerHub
-Образ foodgram-project доступен на DockerHub: foodgram-project/yamdb:v1
+Образ foodgram-project доступен на DockerHub: enjefd/foodgram-project:latest
 
 ### Переменные окружения
 
