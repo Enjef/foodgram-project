@@ -1,6 +1,7 @@
 ![example workflow](https://github.com/enjef/foodgram-project/actions/workflows/foodgram_workflow.yml/badge.svg)
 # Проект: foodgram-project
 foodgram-project
+https://sprint.ml/
 
 ### Описание
 После выполнения установки в трёх docker-контейнерах(nginx, PostgreSQL и Django) будет развёрнут проект foodgram .
@@ -23,6 +24,10 @@ foodgram-project
 ### Запуск проекта
 Выполните команды в облаке:
 ```
+sudo docker-compose exec web python manage.py makemigrations recipes --noinput
+sudo docker-compose exec web python manage.py migrate --noinput
+sudo docker-compose exec web python manage.py collectstatic --no-input
+sudo docker-compose exec web python manage.py loaddata ingredients.json
 sudo docker-compose exec web python manage.py createsuperuser
 ```
 ### DockerHub
