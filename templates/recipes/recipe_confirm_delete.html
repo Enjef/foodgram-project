@@ -1,23 +1,23 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-    {% load static %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_title %}
+    {{ page_title }}
+{% endblock %}
+
+{% block static_css %}
     <link rel="stylesheet" href="{% static 'pages/index.css' %}">
-</head>
+{% endblock %}
 
-
-<form method="post">
-    {% csrf_token %}
-    <center><h1>Подтвердите удаление</h1></center>
-    <div class="custom-center-block">
-        <p class="custom-text-block">Вы уверены, что хотите удалить "{{ object }}"?</p>
-    </div>
-    <div class="custom-button-block">
-        <input class="button button_style_blue" type="submit" value="Подтвердить">
-    </div>
-</form>
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <center><h1>Подтвердите удаление</h1></center>
+        <div class="custom-center-block">
+            <p class="custom-text-block">Вы уверены, что хотите удалить "{{ object }}"?</p>
+        </div>
+        <div class="custom-button-block">
+            <input class="button button_style_blue" type="submit" value="Подтвердить">
+        </div>
+    </form>
+{% endblock %}

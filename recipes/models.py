@@ -37,7 +37,7 @@ class Tag(models.Model):
         return self.name
 
     class Meta:
-        ordering = ['-id']
+        ordering = ('-id',)
         verbose_name = 'Тег'
         verbose_name_plural = 'Теги'
 
@@ -87,7 +87,7 @@ class Recipe(models.Model):
     class Meta:
         verbose_name = 'Рецепт'
         verbose_name_plural = 'Рецепты'
-        ordering = ['-pub_date']
+        ordering = ('-pub_date',)
 
 
 class RecipeIngredient(models.Model):
@@ -138,7 +138,7 @@ class Favorite(models.Model):
         return f'Избранное {self.user}: {self.recipe}'
 
     class Meta:
-        models.UniqueConstraint(
+        constraints = models.UniqueConstraint(
             fields=('user', 'recipe'),
             name='unique_favorite'
         )
@@ -163,8 +163,8 @@ class Cart(models.Model):
         return f'Корзина {self.customer}: {self.recipe}'
 
     class Meta:
-        models.UniqueConstraint(
-            fields=('customer', 'recipe'),
+        constraints = models.UniqueConstraint(
+            fields=('customer', 'recipe',),
             name='unique_сart'
         )
         verbose_name = 'Корзина'
@@ -189,11 +189,11 @@ class Subscription(models.Model):
         return f'Подписка юзера {self.user} на {self.author}'
 
     class Meta:
-        models.UniqueConstraint(
-            fields=('user', 'author'),
+        constraints = models.UniqueConstraint(
+            fields=('user', 'author',),
             name='unique_follow'
         )
-        ordering = ['-author']
+        ordering = ('-author',)
         verbose_name = 'Подписка'
         verbose_name_plural = 'Подписки'
 

@@ -1,7 +1,8 @@
 from django.urls import path
 
-from api.views import (FavoritesView, IngredientsViewSet, PurchasesView,
-                       SubscriptionsView)
+from api.views import (
+    FavoritesView, IngredientsViewSet, PurchasesView, SubscriptionsView
+)
 
 urlpatterns = [
     path('purchases/', PurchasesView.as_view(), name='purchase'),

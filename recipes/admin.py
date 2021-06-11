@@ -2,8 +2,9 @@ from django.contrib import admin
 from django.contrib.admin.decorators import register
 from django.db.models.aggregates import Count
 
-from recipes.models import (Cart, Favorite, Ingredient, Recipe,
-                            RecipeIngredient, Subscription, Tag)
+from recipes.models import (
+    Cart, Favorite, Ingredient, Recipe, RecipeIngredient, Subscription, Tag
+)
 
 
 @register(Ingredient)
@@ -47,28 +48,14 @@ class TagAdmin(admin.ModelAdmin):
     )
 
 
-class PersonAdmin(admin.ModelAdmin):
-    list_display = ('book_count', 'other_field')
-
-    def get_queryset(self, request):
-        qs = super().get_queryset(request)
-        qs = qs.annotate(book_count=Count('book')).order_by('-book_count')
-        return qs
-
-    def book_count(self, person_instance):
-        return person_instance.book_count
-
-
 @register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = ['title', 'author', 'recipe_follower_count']
-    readonly_fields = ['recipe_follower_count']
+    list_display = ('title', 'author', 'recipe_follower_count')
+    readonly_fields = ('recipe_follower_count')
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
-        qs = qs.annotate(
-            recipe_follower_count=Count('following')).order_by(
-                '-recipe_follower_count')
+        qs = qs.annotate(recipe_follower_count=Count('following'))
         return qs
 
     def recipe_follower_count(self, obj):
