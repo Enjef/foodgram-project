@@ -29,8 +29,8 @@ class FavoritesView(APIView):
 
 class PurchasesView(APIView):
     def get(self, request, format=None):
-        purchases = Cart.objects.filter(customer=request.user) #  dict .values() - all .values('customer', 'recipe') .values('customer__username', 'recipe')
-        return Response(purchases)                             # named_tuple Row(id=1, title='asdasd') .values_list() flat=true to get only one field
+        purchases = Cart.objects.filter(customer=request.user)
+        return Response(purchases)
 
     def post(self, request, format=None):
         Cart.objects.get_or_create(
