@@ -12,7 +12,6 @@ class Ingredient(models.Model):
     title = models.CharField(
         max_length=256,
         verbose_name='Название',
-        unique=True
     )
     dimension = models.CharField(max_length=128, verbose_name='ед. измерения')
 
