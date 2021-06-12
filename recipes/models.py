@@ -9,7 +9,11 @@ User = get_user_model()
 
 
 class Ingredient(models.Model):
-    title = models.CharField(max_length=256, verbose_name='Название')
+    title = models.CharField(
+        max_length=256,
+        verbose_name='Название',
+        unique=True
+    )
     dimension = models.CharField(max_length=128, verbose_name='ед. измерения')
 
     def __str__(self) -> str:
@@ -138,9 +142,11 @@ class Favorite(models.Model):
         return f'Избранное {self.user}: {self.recipe}'
 
     class Meta:
-        constraints = models.UniqueConstraint(
-            fields=('user', 'recipe'),
-            name='unique_favorite'
+        constraints = (
+            models.UniqueConstraint(
+                fields=('user', 'recipe'),
+                name='unique_favorite'
+            ),
         )
         verbose_name_plural = 'Избранные рецепты'
 
@@ -163,9 +169,11 @@ class Cart(models.Model):
         return f'Корзина {self.customer}: {self.recipe}'
 
     class Meta:
-        constraints = models.UniqueConstraint(
-            fields=('customer', 'recipe',),
-            name='unique_сart'
+        constraints = (
+            models.UniqueConstraint(
+                fields=('customer', 'recipe',),
+                name='unique_сart'
+            ),
         )
         verbose_name = 'Корзина'
         verbose_name_plural = 'Корзины'
@@ -189,9 +197,11 @@ class Subscription(models.Model):
         return f'Подписка юзера {self.user} на {self.author}'
 
     class Meta:
-        constraints = models.UniqueConstraint(
-            fields=('user', 'author',),
-            name='unique_follow'
+        constraints = (
+            models.UniqueConstraint(
+                fields=('user', 'author',),
+                name='unique_follow'
+            ),
         )
         ordering = ('-author',)
         verbose_name = 'Подписка'

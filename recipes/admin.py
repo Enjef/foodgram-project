@@ -50,8 +50,8 @@ class TagAdmin(admin.ModelAdmin):
 
 @register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'recipe_follower_count')
-    readonly_fields = ('recipe_follower_count')
+    list_display = ('title', 'author', 'recipe_follower_count',)
+    readonly_fields = ('recipe_follower_count',)
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
