@@ -209,7 +209,7 @@ class RecipeUpdateView(LoginRequiredMixin, UpdateView):
     def get_initial(self):
         initial = super().get_initial()
         initial['tags'] = [
-            tag.name for tag in Tag.objects.filter(recipes=self.object)
+            tag.slug for tag in Tag.objects.filter(recipes=self.object)
         ]
         initial['recipe_ingredients'] = RecipeIngredient.objects.filter(
             recipe=self.object
