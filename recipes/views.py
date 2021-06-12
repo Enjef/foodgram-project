@@ -156,7 +156,7 @@ def recipe_ingredient_bulk_create(form_ingredients, recipe):
         objects.append(
             RecipeIngredient(
                 recipe=recipe,
-                ingredient=ingredient[0][0],
+                ingredient=ingredient[0],
                 amount=ingredient[1])
         )
     RecipeIngredient.objects.bulk_create(objects)
