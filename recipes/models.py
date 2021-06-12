@@ -1,4 +1,3 @@
-from enum import unique
 import uuid
 
 from django.contrib.auth import get_user_model
