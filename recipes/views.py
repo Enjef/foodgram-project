@@ -29,6 +29,8 @@ class RecipeListView(ListView):
 
     def get_context_data(self, **kwargs):
         kwargs.update({'page_title': self._get_page_title()})
+        tags = Tag.objects.all()
+        kwargs.update({'tags_all': tags})
         context = super().get_context_data(**kwargs)
         return context
 
@@ -180,6 +182,12 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
         form.save_m2m()
         return super().form_valid(form)
 
+    def get_context_data(self, **kwargs):
+        tags = Tag.objects.all()
+        kwargs.update({'tags_all': tags})
+        context = super().get_context_data(**kwargs)
+        return context
+
 
 class RecipeDeleteView(LoginRequiredMixin, DeleteView):
     model = Recipe
@@ -191,6 +199,12 @@ class RecipeUpdateView(LoginRequiredMixin, UpdateView):
     page_title = 'Создание рецепта'
     form_class = RecipeForm
     template_name = 'recipes/formChangeRecipe.html'
+
+    def get_context_data(self, **kwargs):
+        tags = Tag.objects.all()
+        kwargs.update({'tags_all': tags})
+        context = super().get_context_data(**kwargs)
+        return context
 
     def get_initial(self):
         initial = super().get_initial()

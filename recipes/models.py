@@ -1,3 +1,4 @@
+from enum import unique
 import uuid
 
 from django.contrib.auth import get_user_model
@@ -35,6 +36,10 @@ class Tag(models.Model):
         max_length=200,
         verbose_name='Слаг',
         default=uuid.uuid1
+    )
+    style = models.CharField(
+        max_length=200,
+        verbose_name='Стиль'
     )
 
     def __str__(self) -> str:
