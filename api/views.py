@@ -28,10 +28,6 @@ class FavoritesView(APIView):
 
 
 class PurchasesView(APIView):
-    def get(self, request, format=None):
-        purchases = Cart.objects.filter(customer=request.user)
-        return Response(purchases)
-
     def post(self, request, format=None):
         Cart.objects.get_or_create(
             customer=request.user,

@@ -25,9 +25,9 @@
                             <li class="card-user__item">
                                 <div class="recipe">
                                     {% if recipe.image %}
-                                        <img src="{{ recipe.image.url }}" alt="{{ recipe.name }}" class="recipe__image">
+                                        <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}" class="recipe__image">
                                     {% else %}
-                                        <img src="{% static 'no_image.png' %}" alt="{{ recipe.name }}" class="recipe__image">
+                                        <img src="{% static 'no_image.png' %}" alt="{{ recipe.title }}" class="recipe__image">
                                     {% endif %}
                                     <h3 class="recipe__title">{{ recipe.title }}</h3>
                                     <p class="recipe__text"><span class="icon-time"></span> {{recipe.time }} мин.</p>

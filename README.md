@@ -1,7 +1,7 @@
 ![example workflow](https://github.com/enjef/foodgram-project/actions/workflows/foodgram_workflow.yml/badge.svg)
 # Проект: foodgram-project
 foodgram-project
-Доступен по ссылке: https://sprint.ml/
+Доступен по адресу: sprint.ml
 
 ### Описание
 После выполнения установки в трёх docker-контейнерах(nginx, PostgreSQL и Django) будет развёрнут проект foodgram .
