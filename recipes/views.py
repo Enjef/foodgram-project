@@ -214,6 +214,7 @@ class RecipeUpdateView(LoginRequiredMixin, UpdateView):
         initial['recipe_ingredients'] = RecipeIngredient.objects.filter(
             recipe=self.object
         )
+        initial['slug'] = self.object.slug
         return initial
 
     def form_valid(self, form):
