@@ -42,6 +42,7 @@ class TagAdmin(admin.ModelAdmin):
     fields = (
         'name',
         'slug',
+        'style',
     )
     search_fields = (
         'name',
