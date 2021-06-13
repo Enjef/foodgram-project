@@ -237,14 +237,15 @@ class RecipeUpdateView(LoginRequiredMixin, UpdateView):
 
 def shoping_list_view(request):
     carts = Cart.objects.filter(customer=request.user)
+
     recipes = Recipe.objects.filter(in_cart__in=carts)
     recipes_ingredients = RecipeIngredient.objects.filter(
         recipe__in=recipes
     )
 
     ingredients = (
-        recipes_ingredients.values('ingredient_title').annotate(
-            total_amount=Sum('amount')
+        recipes_ingredients.annotate(
+            title='ingredient', total_amount=Sum('amount')
         )
     )
     out = str(ingredients)
