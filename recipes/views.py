@@ -252,12 +252,12 @@ def shoping_list_view(request):
             'ingredient__dimension')
     )
 
-    out = [str(ingredients)]
-    '''for item in ingredients:
-        title, amount = list(item.values())
+    out = []
+    for item in ingredients:
+        title, amount, dimension = list(item.values())
         amount = str(float(amount))
-        out.append(f'{title} {amount}\n')
-    out = ''.join(sorted(out))'''
+        out.append(f'{title} {amount} {dimension}\n')
+    out = ''.join(sorted(out))
     filename = 'my_shoping_list.txt'
     response = HttpResponse(out, content_type='text/plain')
     response['Content-Disposition'] = f'attachment; filename={filename}'
