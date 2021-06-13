@@ -242,18 +242,17 @@ def shoping_list_view(request):
     recipes_ingredients = RecipeIngredient.objects.filter(
         recipe__in=recipes
     )
-
     ingredients = (
         recipes_ingredients.values('ingredient__title').annotate(
             total_amount=Sum('amount')
         )
     )
-    out = [str(ingredients.values(flat=True))]
-    '''
+    out = []
     for item in ingredients:
-        title, amount = item['ingredient__title']
-        out.append(' '.join([item, str(float(ingredients[item])) + '\n']))
-    out = ''.join(sorted(out))'''
+        title, amount = list(item.values())
+        amount = str(float(amount))
+        out.append(f'{title} {amount}\n')
+    out = ''.join(out)
     filename = 'my_shoping_list.txt'
     response = HttpResponse(out, content_type='text/plain')
     response['Content-Disposition'] = f'attachment; filename={filename}'
