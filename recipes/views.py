@@ -244,11 +244,11 @@ def shoping_list_view(request):
     )
 
     ingredients = (
-        recipes_ingredients.values('ingredient__title', flat=True).annotate(
+        recipes_ingredients.values('ingredient__title').annotate(
             total_amount=Sum('amount')
         )
     )
-    out = [str(ingredients)]
+    out = [str(ingredients.values(flat=True))]
     '''
     for item in ingredients:
         title, amount = item['ingredient__title']
