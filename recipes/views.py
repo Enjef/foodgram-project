@@ -254,7 +254,7 @@ def shoping_list_view(request):
 
     out = []
     for item in ingredients:
-        title, amount, dimension = list(item.values())
+        title, amount, dimension = item
         amount = str(float(amount))
         out.append(f'{title} {amount} {dimension}\n')
     out = ''.join(sorted(out))
