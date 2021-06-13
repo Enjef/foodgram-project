@@ -247,15 +247,15 @@ def shoping_list_view(request):
             total_amount=Sum('amount')
         )
     )
-    out = []
-    for item in ingredients:
+    out = str(ingredients)
+    '''for item in ingredients:
         out.append(' '.join([item, str(ingredients[item]) + '\n']))
-    out = ''.join(sorted(out))
+    out = ''.join(sorted(out))'''
     filename = 'my_shoping_list.txt'
     response = HttpResponse(out, content_type='text/plain')
     response['Content-Disposition'] = f'attachment; filename={filename}'
     return response
-
+    
 
 def page_not_found(request, exception):
     return render(
