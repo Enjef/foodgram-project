@@ -249,7 +249,7 @@ def shoping_list_view(request):
         ).values_list(
             'ingredient__title',
             'total_amount',
-            'ingredient__dimention')
+            'ingredient__dimension')
     )
 
     out = [str(ingredients)]
