@@ -255,7 +255,7 @@ def shoping_list_view(request):
     response = HttpResponse(out, content_type='text/plain')
     response['Content-Disposition'] = f'attachment; filename={filename}'
     return response
-    
+
 
 def page_not_found(request, exception):
     return render(
