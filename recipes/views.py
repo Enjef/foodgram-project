@@ -244,7 +244,7 @@ def shoping_list_view(request):
     )
 
     ingredients = (
-        recipes_ingredients.annotate(
+        recipes_ingredients.values('ingredient__title').annotate(
             total_amount=Sum('amount')
         )
     )
