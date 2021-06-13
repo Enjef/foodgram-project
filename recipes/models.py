@@ -15,13 +15,13 @@ class Ingredient(models.Model):
     )
     dimension = models.CharField(max_length=128, verbose_name='ед. измерения')
 
-    def __str__(self) -> str:
-        return f'{self.title} {self.dimension}'
-
     class Meta:
         ordering = ('title',)
         verbose_name = 'Инргедиент'
         verbose_name_plural = 'Ингредиенты'
+
+    def __str__(self) -> str:
+        return f'{self.title} {self.dimension}'
 
 
 class Tag(models.Model):
@@ -40,13 +40,13 @@ class Tag(models.Model):
         verbose_name='Стиль'
     )
 
-    def __str__(self) -> str:
-        return self.name
-
     class Meta:
         ordering = ('name',)
         verbose_name = 'Тег'
         verbose_name_plural = 'Теги'
+
+    def __str__(self) -> str:
+        return self.name
 
 
 class Recipe(models.Model):
@@ -85,16 +85,16 @@ class Recipe(models.Model):
         verbose_name='Дата публикации',
     )
 
+    class Meta:
+        verbose_name = 'Рецепт'
+        verbose_name_plural = 'Рецепты'
+        ordering = ('-pub_date',)
+
     def __str__(self) -> str:
         return f'{self.title} от {self.author}'
 
     def get_absolute_url(self):
         return reverse('recipe', kwargs={'slug': self.slug})
-
-    class Meta:
-        verbose_name = 'Рецепт'
-        verbose_name_plural = 'Рецепты'
-        ordering = ('-pub_date',)
 
 
 class RecipeIngredient(models.Model):
@@ -141,9 +141,6 @@ class Favorite(models.Model):
         verbose_name='Рецепт',
     )
 
-    def __str__(self) -> str:
-        return f'Избранное {self.user}: {self.recipe}'
-
     class Meta:
         constraints = (
             models.UniqueConstraint(
@@ -152,6 +149,9 @@ class Favorite(models.Model):
             ),
         )
         verbose_name_plural = 'Избранные рецепты'
+
+    def __str__(self) -> str:
+        return f'Избранное {self.user}: {self.recipe}'
 
 
 class Cart(models.Model):
@@ -168,9 +168,6 @@ class Cart(models.Model):
         related_name='in_cart',
     )
 
-    def __str__(self) -> str:
-        return f'Корзина {self.customer}: {self.recipe}'
-
     class Meta:
         constraints = (
             models.UniqueConstraint(
@@ -180,6 +177,9 @@ class Cart(models.Model):
         )
         verbose_name = 'Корзина'
         verbose_name_plural = 'Корзины'
+
+    def __str__(self) -> str:
+        return f'Корзина {self.customer}: {self.recipe}'
 
 
 class Subscription(models.Model):
@@ -196,9 +196,6 @@ class Subscription(models.Model):
         verbose_name='Автор',
     )
 
-    def __str__(self) -> str:
-        return f'Подписка юзера {self.user} на {self.author}'
-
     class Meta:
         constraints = (
             models.UniqueConstraint(
@@ -209,6 +206,9 @@ class Subscription(models.Model):
         ordering = ('-author',)
         verbose_name = 'Подписка'
         verbose_name_plural = 'Подписки'
+
+    def __str__(self) -> str:
+        return f'Подписка юзера {self.user} на {self.author}'
 
     def clean(self):
         if self.user == self.author:

@@ -10,6 +10,7 @@ from recipes.models import (
 )
 from foodgram.settings import PAGE_SIZE_INDEX, PAGE_SIZE_CART
 from .forms import RecipeForm
+from django.db.models import Sum
 
 
 class RecipeListView(ListView):
@@ -222,10 +223,7 @@ class RecipeUpdateView(LoginRequiredMixin, UpdateView):
             return super().form_invalid(form)
         self.object = form.save(commit=False)
         self.object.tags.set([])
-        recipeingredients = get_object_or_404(
-            RecipeIngredient,
-            recipe=self.object
-        )
+        recipeingredients = RecipeIngredient.objects.filter(recipe=self.object)
         if recipeingredients:
             recipeingredients.delete()
         form_image = self.request.POST.get('image')
@@ -240,26 +238,18 @@ class RecipeUpdateView(LoginRequiredMixin, UpdateView):
 def shoping_list_view(request):
     carts = Cart.objects.filter(customer=request.user)
     recipes = Recipe.objects.filter(in_cart__in=carts)
-    recipes_intgredients = RecipeIngredient.objects.filter(
+    recipes_ingredients = RecipeIngredient.objects.filter(
         recipe__in=recipes
     )
-    ingredients = {}
-    for recipe_ingr in recipes_intgredients:
-        if recipe_ingr.ingredient.title in ingredients:
-            ingredients[recipe_ingr.ingredient.title][0] += (
-                recipe_ingr.amount
-            )
-        else:
-            ingredients[recipe_ingr.ingredient.title] = [
-                recipe_ingr.amount, recipe_ingr.ingredient.dimension
-            ]
+
+    ingredients = (
+        recipes_ingredients.values('ingredient').annotate(
+            total_amount=Sum('amount')
+        )
+    )
     out = []
     for item in ingredients:
-        out.append(' '.join([
-            item,
-            str(ingredients[item][0]),
-            ingredients[item][1]]) + '\n'
-        )
+        out.append(' '.join([item, str(ingredients[item]) + '\n']))
     out = ''.join(sorted(out))
     filename = 'my_shoping_list.txt'
     response = HttpResponse(out, content_type='text/plain')
