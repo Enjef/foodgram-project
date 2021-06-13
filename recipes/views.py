@@ -1,16 +1,18 @@
+from http import HTTPStatus
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Sum
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
+from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
-from http import HTTPStatus
+from foodgram.settings import PAGE_SIZE_CART, PAGE_SIZE_INDEX
 from recipes.models import (
     Cart, Ingredient, Recipe, RecipeIngredient, Subscription, Tag, User
 )
-from foodgram.settings import PAGE_SIZE_INDEX, PAGE_SIZE_CART
+
 from .forms import RecipeForm
-from django.db.models import Sum
 
 
 class RecipeListView(ListView):
@@ -20,12 +22,12 @@ class RecipeListView(ListView):
     page_title = None
 
     def get_queryset(self):
-        tags = self.request.GET.get('tags')
-        if tags is None:
+        tags_check = self.request.GET.get('tags')
+        if tags_check is None:
             return self.queryset
-        tags = tags.split(',')
-        tags = Tag.objects.filter(slug__in=tags)
-        recipes = self.queryset.filter(tags__in=tags)
+        tags_check = tags_check.split(',')
+        tags_check = Tag.objects.filter(slug__in=tags_check)
+        recipes = self.queryset.filter(tags__in=tags_check)
         return recipes
 
     def get_context_data(self, **kwargs):
@@ -192,7 +194,7 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
 
 class RecipeDeleteView(LoginRequiredMixin, DeleteView):
     model = Recipe
-    success_url = 'index'
+    success_url = reverse_lazy('index')
 
 
 class RecipeUpdateView(LoginRequiredMixin, UpdateView):
@@ -244,14 +246,12 @@ def shoping_list_view(request):
     )
     ingredients = (
         recipes_ingredients.values('ingredient__title').annotate(
-            total_amount=Sum('amount'),
-
+            total_amount=Sum('amount')
         ).values_list(
             'ingredient__title',
             'total_amount',
             'ingredient__dimension')
     )
-
     out = []
     for item in ingredients:
         title, amount, dimension = item
