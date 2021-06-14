@@ -3,7 +3,7 @@
     {% for tag in tags_all %}
         {{ get}}
         <li class="tags__item">
-            <a id="{{ tag.slug }}" class="tags__checkbox tags__checkbox_style_{{ tag.style }} {% if tag.slug in request.GET.urlencode or 'tags' not in request.GET.urlencode %}tags__checkbox_active{% else %}tags__checkbox{% endif %}" href="{% if my_tag tag.slug 'tags' request.GET.urlencode %}{% my_tag tag.slug 'tags' request.GET.urlencode %}{% else %}{{ request.path }}{% endif %}"></a>
+            <a id="{{ tag.slug }}" class="tags__checkbox tags__checkbox_style_{{ tag.style }} {% if tag.slug in request.GET.urlencode or 'tags' not in request.GET.urlencode %}tags__checkbox_active{% else %}tags__checkbox{% endif %}" href="{% my_tag tag.slug 'tags' request.path request.GET.urlencode %}"></a>
             <span class="tags__label">{{ tag.name }}</span>
         </li>
     {% endfor %}

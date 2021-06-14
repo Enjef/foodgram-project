@@ -46,7 +46,7 @@ def my_url(value, field_name, urlencode=None):
 
 
 @register.simple_tag
-def my_tag(value, field_name, urlencode=None):
+def my_tag(value, field_name, path, urlencode=None):
     if not urlencode:
         url = f'?{field_name}={value}'
         return url
@@ -60,7 +60,7 @@ def my_tag(value, field_name, urlencode=None):
     else:
         filtered_querystring.append(value)
     if not filtered_querystring:
-        return ''
+        return f'{path}'
     encoded_querystring = ','.join(filtered_querystring)
     url = f'?{field_name}={encoded_querystring}'
     return url
