@@ -140,14 +140,14 @@ def form_ingredients_tags(request):
             continue
         title = ing_part[0]
         amount = float(ing_part[1].replace(',', '.'))
-        dimention = ing_part[2]
+        dimension = ing_part[2]
         if title in form_ingredients:
             form_ingredients[title][1] += amount
         else:
             ing = get_object_or_404(
                 Ingredient,
                 title=title,
-                dimension=dimention
+                dimension=dimension
             )
             if ing:
                 form_ingredients[title] = [ing, amount]
@@ -265,7 +265,7 @@ def shoping_list_view(request):
     return response
 
 
-def page_not_found(request, exception):
+def page_not_found(request):
     return render(
         request,
         'misc/404.html',

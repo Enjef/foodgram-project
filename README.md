@@ -1,7 +1,8 @@
 ![example workflow](https://github.com/enjef/foodgram-project/actions/workflows/foodgram_workflow.yml/badge.svg)
 # Проект: foodgram-project
 foodgram-project
-Доступен по адресу: sprint.ml
+Доступен по адресу: http://sprint.ml
+Доступен по IP: http://178.154.199.48
 
 ### Описание
 После выполнения установки в трёх docker-контейнерах(nginx, PostgreSQL и Django) будет развёрнут проект foodgram .
@@ -44,6 +45,7 @@ sudo docker-compose exec web python manage.py createsuperuser
 | DB_PORT | порт для подключения к БД |
 
 
+
 ### Github Actions secrets для CI/CD
 
 | Secret | Описание | 
@@ -56,3 +58,5 @@ sudo docker-compose exec web python manage.py createsuperuser
 | SSH_KEY | RSA PRIVATE KEY |
 | TELEGRAM_TO | ID телеграм-аккаунта для получения сообщений |
 | TELEGRAM_TOKEN | токен телеграм-бота для отправки сообщений |
+| SECRET_KEY | settings.SECRET_KEY |
+| DEBUG | False |
