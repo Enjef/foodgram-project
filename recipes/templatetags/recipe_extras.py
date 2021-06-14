@@ -60,7 +60,7 @@ def my_tag(value, field_name, urlencode=None):
     else:
         filtered_querystring.append(value)
     if not filtered_querystring:
-        return ' '
+        return ''
     encoded_querystring = ','.join(filtered_querystring)
     url = f'?{field_name}={encoded_querystring}'
     return url

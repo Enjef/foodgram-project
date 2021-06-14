@@ -70,8 +70,8 @@ class ProfileView(RecipeListView):
         if tags is None:
             return qs
         tags = tags.split(',')
-        tags = Tag.objects.filter(slug__in=tags)
-        qs = qs.filter(tags__in=tags)
+        tags = Tag.objects.filter(slug__in=tags).distinct()
+        qs = qs.filter(tags__in=tags).distinct()
         return qs
 
     def _get_page_title(self):
@@ -127,9 +127,10 @@ def form_ingredients_tags(request):
     form_ingredients = {}
     form_tags = []
     ing_part = []
+    tag_keys = Tag.objects.values_list('slug', flat=True)
     ing_keys = ['nameIngred', 'valueIngre', 'unitsIngre']
     for field in request:
-        if field in ['breakfast', 'lunch', 'dinner']:
+        if field in tag_keys:
             form_tags.append(get_object_or_404(Tag, slug=field).id)
             continue
         if field[:10] not in ing_keys:
