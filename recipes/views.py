@@ -265,7 +265,7 @@ def shoping_list_view(request):
     return response
 
 
-def page_not_found(request):
+def page_not_found(request, exception):
     return render(
         request,
         'misc/404.html',
