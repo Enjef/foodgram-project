@@ -1,5 +1,5 @@
 import django_filters
-from recipes.models import Recipe
+from recipes.models import Recipe, Tag
 from django import template
 
 register = template.Library()
@@ -51,19 +51,16 @@ def my_tag(value, field_name, urlencode=None):
         url = f'?{field_name}={value}'
         return url
     filtered_querystring = []
-    if 'breakfast' in urlencode:
-        filtered_querystring.append('breakfast')
-    if 'lunch' in urlencode:
-        filtered_querystring.append('lunch')
-    if 'dinner' in urlencode:
-        filtered_querystring.append('dinner')
+    tags_all = Tag.objects.values_list('slug', flat=True)
+    for tag in tags_all:
+        if tag in urlencode:
+            filtered_querystring.append(tag)
     if value in urlencode and value in filtered_querystring:
         filtered_querystring.pop(filtered_querystring.index(value))
     else:
         filtered_querystring.append(value)
     if not filtered_querystring:
-        urlencode = urlencode[:urlencode.index("tags") - 1]
-        return f'{urlencode}'
+        return ' '
     encoded_querystring = ','.join(filtered_querystring)
     url = f'?{field_name}={encoded_querystring}'
     return url

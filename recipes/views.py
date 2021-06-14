@@ -27,7 +27,7 @@ class RecipeListView(ListView):
             return self.queryset
         tags_check = tags_check.split(',')
         tags_check = Tag.objects.filter(slug__in=tags_check)
-        recipes = self.queryset.filter(tags__in=tags_check)
+        recipes = self.queryset.filter(tags__in=tags_check).distinct()
         return recipes
 
     def get_context_data(self, **kwargs):
