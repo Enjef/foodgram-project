@@ -26,7 +26,7 @@ class RecipeListView(ListView):
         if tags_check is None:
             return self.queryset
         tags_check = tags_check.split(',')
-        tags_check = Tag.objects.filter(slug__in=tags_check)
+        tags_check = Tag.objects.filter(slug__in=tags_check).distinct()
         recipes = self.queryset.filter(tags__in=tags_check).distinct()
         return recipes
 
