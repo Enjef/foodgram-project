@@ -277,7 +277,7 @@ def page_not_found(request, exception):
 def server_error(request):
     return render(
         request,
-        'misc/auth.html',
+        'misc/500.html',
         status=HTTPStatus.INTERNAL_SERVER_ERROR
     )
 
