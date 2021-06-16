@@ -15,17 +15,17 @@
         <h1 class="main__title">{{ page_title }}</h1>
         {% include 'includes/filter_tags.html' %}
     </div>
-        {% if user.is_authenticated %}
-            {% if user.username not in request.path %}
-                <div class="author-subscribe" data-author="{{ author.id }}">
-                  {% if author|in_subs:user %}
-                      <p style="padding: 0 0 2em 0;"><button class="button button_style_light-blue" name="subscribe">Отписаться от автора</button></p>    
-                  {% else %}
-                      <p style="padding: 0 0 2em 0;"><button class="button button_style_light-blue button_size_subscribe" name="subscribe" data-out>Подписаться на автора</button></p>
-                  {% endif %}
-                </div>
-            {% endif %}
+    {% if user.is_authenticated %}
+        {% if user.username not in request.path %}
+            <div class="author-subscribe" data-author="{{ author.id }}">
+                {% if author|in_subs:user %}
+                    <p style="padding: 0 0 2em 0;"><button class="button button_style_light-blue" name="subscribe">Отписаться от автора</button></p>    
+                {% else %}
+                    <p style="padding: 0 0 2em 0;"><button class="button button_style_light-blue button_size_subscribe" name="subscribe" data-out>Подписаться на автора</button></p>
+                {% endif %}
+            </div>
         {% endif %}
+    {% endif %}
     </div>
     <div class="card-list">
         {% for recipe in page_obj %}
