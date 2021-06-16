@@ -128,6 +128,7 @@ def form_ingredients_tags(request):
     form_tags = []
     ing_part = []
     tag_keys = Tag.objects.values_list('slug', flat=True)
+    all_ingredients = Ingredient.objects.values_list('title', flat=True)
     ing_keys = ['nameIngred', 'valueIngre', 'unitsIngre']
     for field in request:
         if field in tag_keys:
@@ -139,6 +140,9 @@ def form_ingredients_tags(request):
         if len(ing_part) != 3:
             continue
         title = ing_part[0]
+        if title not in all_ingredients:
+            ing_part = []
+            continue
         amount = float(ing_part[1].replace(',', '.'))
         dimension = ing_part[2]
         if title in form_ingredients:
