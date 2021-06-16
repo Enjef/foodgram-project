@@ -46,13 +46,13 @@
                 </div>
                 <div class="form__field-group-ingredientes-container">
                     {% for ing in form.instance.IngredientRecipe_set.all %}
-                    <div class="form__field-item-ingredient" id="{{ ing.pk }}">
-                        <span>{{ ing.ingredient.title }} {{ ing.ingredient.amount }}{{ ing.ingredient.dimension }}</span>
-                        <span class="form__field-item-delete" ></span>
-                        <input id="nameIngredient_{{ ing.pk }}" name="nameIngredient_{{ ing }}" type="hidden" value="{{ ing.ingredient.title }}">
-                        <input id="valueIngredient_{{ ing.pk }}" name="valueIngredient_{{ ing }}" type="hidden" value="{{ ing.amount }}">
-                        <input id="unitsIngredient_{{ ing.pk }}" name="unitsIngredient_{{ ing }}" type="hidden" value="{{ ing.ingredient.dimension }}">
-                    </div>
+                        <div class="form__field-item-ingredient" id="{{ ing.pk }}">
+                            <span>{{ ing.ingredient.title }} {{ ing.ingredient.amount }}{{ ing.ingredient.dimension }}</span>
+                            <span class="form__field-item-delete" ></span>
+                            <input id="nameIngredient_{{ ing.pk }}" name="nameIngredient_{{ ing }}" type="hidden" value="{{ ing.ingredient.title }}">
+                            <input id="valueIngredient_{{ ing.pk }}" name="valueIngredient_{{ ing }}" type="hidden" value="{{ ing.amount }}">
+                            <input id="unitsIngredient_{{ ing.pk }}" name="unitsIngredient_{{ ing }}" type="hidden" value="{{ ing.ingredient.dimension }}">
+                        </div>
                     {% endfor %}
                 </div>
                 <span class="form__ingredient-link" id="addIng">Добавить ингредиент</span>

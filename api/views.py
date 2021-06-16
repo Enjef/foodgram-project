@@ -21,10 +21,8 @@ class FavoritesView(APIView):
             recipe_id=pk,
             user=request.user
         )
-        if favorite:
-            favorite.delete()
-            return Response({'success': True}, status=status.HTTP_200_OK)
-        return Response({'success': False}, status=status.HTTP_204_NO_CONTENT)
+        favorite.delete()
+        return Response({'success': True}, status=status.HTTP_200_OK)
 
 
 class PurchasesView(APIView):
@@ -37,10 +35,8 @@ class PurchasesView(APIView):
 
     def delete(self, request, pk, format=None):
         cart_obj = get_object_or_404(Cart, recipe_id=pk, customer=request.user)
-        if cart_obj:
-            cart_obj.delete()
-            return Response({'success': True}, status=status.HTTP_200_OK)
-        return Response({'success': False}, status=status.HTTP_204_NO_CONTENT)
+        cart_obj.delete()
+        return Response({'success': True}, status=status.HTTP_200_OK)
 
 
 class SubscriptionsView(APIView):
@@ -53,10 +49,8 @@ class SubscriptionsView(APIView):
 
     def delete(self, request, pk, format=None):
         sub_obj = get_object_or_404(Subscription, author=pk, user=request.user)
-        if sub_obj:
-            sub_obj.delete()
-            return Response({'success': True}, status=status.HTTP_200_OK)
-        return Response({'success': False}, status=status.HTTP_204_NO_CONTENT)
+        sub_obj.delete()
+        return Response({'success': True}, status=status.HTTP_200_OK)
 
 
 class IngredientsViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):

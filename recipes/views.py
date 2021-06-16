@@ -149,8 +149,7 @@ def form_ingredients_tags(request):
                 title=title,
                 dimension=dimension
             )
-            if ing:
-                form_ingredients[title] = [ing, amount]
+            form_ingredients[title] = [ing, amount]
         ing_part = []
 
     return list(form_ingredients.values()), form_tags
