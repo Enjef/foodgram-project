@@ -15,7 +15,7 @@ class IngredientAdmin(admin.ModelAdmin):
         'title',
     )
     list_filter = (
-        'title',
+        'dimension',
     )
 
 
@@ -117,8 +117,5 @@ class SubscriptionAdmin(admin.ModelAdmin):
     list_display = ('user', 'author',)
     empty_value_display = '-пусто-'
     search_fields = (
-        'author',
-    )
-    list_filter = (
         'author',
     )

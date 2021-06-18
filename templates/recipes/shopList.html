@@ -20,11 +20,7 @@
             {% for item in cart_list %}
                 <li class="shopping-list__item" data-id="{{ item.recipe.id }}">
                     <div class="recipe recipe_reverse">
-                        {% if item.recipe.image %}
-                            <img src="{{ item.recipe.image.url }}" alt="{{ item.recipe.title }}" class="recipe__image recipe__image_big">
-                        {% else %}
-                            <img src="{% static 'no_image.png' %}" alt="{{ item.recipe.title }}" class="recipe__image recipe__image_big">
-                        {% endif %}
+                        <img src="{{ item.recipe.image.url }}" alt="{{ item.recipe.title }}" class="recipe__image recipe__image_big">
                         <h3 class="recipe__title">{{ item.recipe.title }}</h3>
                         <p class="recipe__text"><span class="icon-time"></span> {{ item.recipe.time }} мин.</p>
                     </div>

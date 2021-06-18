@@ -24,11 +24,7 @@
                         {% for recipe in item.author.recipes.all|slice:":3" %}
                             <li class="card-user__item">
                                 <div class="recipe">
-                                    {% if recipe.image %}
-                                        <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}" class="recipe__image">
-                                    {% else %}
-                                        <img src="{% static 'no_image.png' %}" alt="{{ recipe.title }}" class="recipe__image">
-                                    {% endif %}
+                                    <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}" class="recipe__image">
                                     <h3 class="recipe__title">{{ recipe.title }}</h3>
                                     <p class="recipe__text"><span class="icon-time"></span> {{recipe.time }} мин.</p>
                                 </div>
@@ -36,7 +32,9 @@
                         {% endfor %}
                         <li class="card-user__item">
                             {% if item.author.recipes.count > 3 %}
-                                <a href="{% url 'profile' username=item.author.username %}" class="card-user__link link">Еще {{ item.author.recipes.count|add:-3 }} рецептов...</a>
+                                <a href="{% url 'profile' username=item.author.username %}" class="card-user__link link">
+                                    Еще {{ item.author.recipes.count|add:-3 }}{% if 4 < item.author.recipes.count|add:-3 < 20 or item.author.recipes.count|add:-3 in [0, 5, 4, 6, 7, 8, 9] %}рецептов...{% elif 1 < item.author.recipes.count|add:-3 < 5 %}рецепта...{% else %}рецепт...{% endif %}
+                                </a>
                             {% endif %}
                         </li>
                     </ul>
