@@ -177,15 +177,6 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
     form_class = RecipeForm
     template_name = 'recipes/formRecipe.html'
 
-    def post(self, request, *args, **kwargs):
-        form = self.get_form()
-        form_ingredients, form_tags = form_ingredients_tags(self.request.POST)
-        if not form_ingredients:
-            form.add_error(None, 'Добавьте ингредиенты')
-        if not form_tags:
-            form.add_error(None, 'Выберите тег')
-        return super().post(request, *args, **kwargs)
-
     def form_valid(self, form):
         form_ingredients, form_tags = form_ingredients_tags(self.request.POST)
         self.object = form.save(commit=False)
