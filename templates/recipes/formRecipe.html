@@ -18,7 +18,6 @@
 <div class="form-container">
     <form class="form" method="post" action="{% url 'create' %}" enctype="multipart/form-data" autocomplete="off">
         {% csrf_token %}
-        {{ form.non_field_errors }}
         <div class="form__group">
             <label for="id_name" class="form__label">Название рецепта</label>
             <div class="form__field-group">
