@@ -33,7 +33,7 @@
                         {% endfor %}
                         <li class="card-user__item">
                             {% if item.author.recipes.count > 3 %}
-                                <a href="{% url 'profile' username=item.author.username %}" class="card-user__link link">Еще {{ item.author.recipes.count|add:-3 }}{% declension item.author.recipes.count|add:-3 %}</a>
+                                <a href="{% url 'profile' username=item.author.username %}" class="card-user__link link">Еще {{ item.author.recipes.count|add:-3 }} {% declension item.author.recipes.count|add:-3 %}</a>
                             {% endif %}
                         </li>
                     </ul>

@@ -68,7 +68,7 @@ def my_tag(value, field_name, path, urlencode=None):
 
 @register.simple_tag
 def declension(qty):
-    if 4 < qty % 100 < 20 or qty % 10 in [0, 5, 4, 6, 7, 8, 9]:
+    if 4 < qty % 100 < 20 or qty % 10 in [0, 5, 6, 7, 8, 9]:
         return 'рецептов...'
     if 1 < qty % 10 < 5:
         return 'рецепта...'
