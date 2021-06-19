@@ -229,6 +229,10 @@ class RecipeUpdateView(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         form_ingredients, form_tags = form_ingredients_tags(self.request.POST)
+        if not form_ingredients:
+            form.add_error(None, 'Добавьте ингредиенты')
+        if not form_tags:
+            form.add_error(None, 'Выберите тег')
         if not form_tags or not form_ingredients:
             return super().form_invalid(form)
         self.object = form.save(commit=False)

@@ -1,7 +1,6 @@
 from django.forms import ModelForm
-from django.forms.models import ModelMultipleChoiceField
 
-from .models import Recipe, Tag
+from .models import Recipe
 
 
 class RecipeForm(ModelForm):
