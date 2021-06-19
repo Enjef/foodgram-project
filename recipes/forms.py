@@ -1,6 +1,7 @@
 from django.forms import ModelForm
 
 from .models import Recipe
+from .views import form_ingredients_tags
 
 
 class RecipeForm(ModelForm):
@@ -10,11 +11,9 @@ class RecipeForm(ModelForm):
 
     def clean(self):
         self._validate_unique = True
-        form_ingredients = self.data.get('nameIngred')
-        form_tags = self.data.get('tags')
+        form_ingredients, form_tags = form_ingredients_tags(self.data)
         if not form_ingredients:
             self.add_error(None, 'Добавьте ингредиенты')
         if not form_tags:
             self.add_error(None, 'Выберите тег')
-            self.add_error(None, f'{self.data}')
         return self.cleaned_data
