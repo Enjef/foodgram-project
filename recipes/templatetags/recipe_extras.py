@@ -64,3 +64,13 @@ def my_tag(value, field_name, path, urlencode=None):
     encoded_querystring = ','.join(filtered_querystring)
     url = f'?{field_name}={encoded_querystring}'
     return url
+
+
+@register.simple_tag
+def declension(qty):
+    if 4 < qty % 100 < 20 or qty % 10 in [0, 5, 4, 6, 7, 8, 9]:
+        return 'рецептов...'
+    if 1 < qty % 10 < 5:
+        return 'рецепта...'
+    else:
+        return 'рецепт...'

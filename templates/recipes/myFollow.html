@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load recipe_extras %}
 
 {% block page_title %}
     {{ page_title }}
@@ -32,9 +33,7 @@
                         {% endfor %}
                         <li class="card-user__item">
                             {% if item.author.recipes.count > 3 %}
-                                <a href="{% url 'profile' username=item.author.username %}" class="card-user__link link">
-                                    Еще {{ item.author.recipes.count|add:-3 }}{% if 4 < item.author.recipes.count|add:-3 < 20 or item.author.recipes.count|add:-3 in [0, 5, 4, 6, 7, 8, 9] %}рецептов...{% elif 1 < item.author.recipes.count|add:-3 < 5 %}рецепта...{% else %}рецепт...{% endif %}
-                                </a>
+                                <a href="{% url 'profile' username=item.author.username %}" class="card-user__link link">Еще {{ item.author.recipes.count|add:-3 }}{% declension item.author.recipes.count|add:-3 %}</a>
                             {% endif %}
                         </li>
                     </ul>
