@@ -16,4 +16,5 @@ class RecipeForm(ModelForm):
             self.add_error(None, 'Добавьте ингредиенты')
         if not form_tags:
             self.add_error(None, 'Выберите тег')
+            self.add_error(None, f'{self.data}')
         return self.cleaned_data
