@@ -30,7 +30,11 @@
             <p class="form__label">Теги</p>
             <div class="form__field-group">
                 {% include 'includes/form_tags.html' %}
-                <span class="form__error">{{ form.tags.errors }}</span>
+                <span class="form__error">
+                    {% for error in form.non_field_errors %}
+                        {% if 'тег' in error %}{{ error }}{% endif %}
+                    {% endfor %}
+                </span>
             </div>
         </div>
         <div class="form__group">
@@ -57,7 +61,11 @@
                 </div>
                 <span class="form__ingredient-link" id="addIng">Добавить ингредиент</span>
 
-                <span class="form__error">{{ form.ingredients.errors }}</span>
+                <span class="form__error">
+                    {% for error in form.non_field_errors %}
+                        {% if 'ингредиенты' in error %}{{ error }}{% endif %}
+                    {% endfor %}
+                </span>
             </div>
         </div>
         <div class="form__group">
