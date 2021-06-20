@@ -61,8 +61,7 @@ jobs:
           sudo docker pull enjefd/foodgram-project:latest
           sudo docker-compose stop
           sudo docker-compose rm web
-          touch .env
-          echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
+          echo SECRET_KEY=${{ secrets.SECRET_KEY }} > .env
           echo DEBUG=${{ secrets.DEBUG }} >> .env
           echo DB_NAME=${{ secrets.DB_NAME }} >> .env
           echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env
