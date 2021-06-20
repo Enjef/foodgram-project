@@ -10,9 +10,7 @@
 {% endblock %}
 
 {% block content %}
-    <center><h1>Вы успешно покинули систему</h1></center>
-    <main class="main container">
-        <center><a href="{% url 'index' %}">Перейти на главную страницу</a></center>
-        <center><a href="{% url 'login' %}">Войти в систему</a></center>
-    </main>
+    <h1 class="main__title">Вы успешно покинули систему</h1>
+    <li class="nav__item"><a href="{% url 'index' %}" class="nav__link link">Перейти на главную страницу</a></li>
+    <li class="nav__item"><a href="{% url 'login' %}" class="nav__link link">Войти в систему</a></li>
 {% endblock %}
