@@ -78,4 +78,4 @@ def declension(qty):
 
 @register.filter
 def subtract(cur, prev):
-    return cur - prev
+    return cur - int(prev)
