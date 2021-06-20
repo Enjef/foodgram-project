@@ -74,3 +74,8 @@ def declension(qty):
         return 'рецепта...'
     else:
         return 'рецепт...'
+
+
+@register.simple_tag
+def subtract(cur, prev):
+    return cur - prev

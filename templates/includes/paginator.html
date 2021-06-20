@@ -7,9 +7,9 @@
         {% else %}
             <li class="pagination__item"><a class="pagination__link link" href="#"><span class="icon-left"></span></a></li>
         {% endif %}
-        {% for i in '-4-3-2-1'|make_list %}
-            {% if items.number|add:i >= 0 %}
-                <li class="pagination__item"><a class="pagination__link link" href="{% my_url page_obj.number|add:i 'page' request.GET.urlencode %}">{{ page_obj.number|add:i }}</a></li>
+        {% for i in '4321'|make_list %}
+            {% if page_obj.number|subtract:i >= 0 %}
+                <li class="pagination__item"><a class="pagination__link link" href="{% my_url page_obj.number|subtract:i 'page' request.GET.urlencode %}">{{ page_obj.number|subtract:i }}</a></li>
             {% endif %}
         {% endfor %}
 
