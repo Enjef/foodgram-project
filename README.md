@@ -1,11 +1,11 @@
 ![example workflow](https://github.com/enjef/foodgram-project/actions/workflows/foodgram_workflow.yml/badge.svg)
 # Проект: foodgram-project
 foodgram-project
-Доступен по адресу: http://sprint.ml
-Доступен по IP: http://178.154.199.48
+Доступен по адресу: sprint.ml
+Доступен по IP: 178.154.199.48
 
 ### Описание
-После выполнения установки в трёх docker-контейнерах(nginx, PostgreSQL и Django) будет развёрнут проект foodgram .
+После выполнения установки в четырех docker-контейнерах(nginx, certbot, PostgreSQL и Django) будет развёрнут проект foodgram.
 Проект foodgram собирает рецепты авторов. 
 Пользователи могут подписываться на рецепты и авторов, создавать свои рецепты, добавлять рецепты в список покупок и распечатывать список необходимых ингредиентов.
 
