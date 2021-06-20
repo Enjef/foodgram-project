@@ -1,7 +1,7 @@
 ![example workflow](https://github.com/enjef/foodgram-project/actions/workflows/foodgram_workflow.yml/badge.svg)
 # Проект: foodgram-project
-foodgram-project
-Доступен по адресу: sprint.ml
+foodgram-project\
+Доступен по адресу: sprint.ml\
 Доступен по IP: 178.154.199.48
 
 ### Описание
