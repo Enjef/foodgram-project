@@ -13,9 +13,9 @@ class RecipeForm(ModelForm):
         self._validate_unique = True
         form_ingredients, form_tags = form_ingredients_tags(self.data)
         if not form_ingredients:
-            self.add_error(None, 'Добавьте ингредиенты')
+            self.add_error(None, '   • Добавьте ингредиенты')
         if not form_tags:
-            self.add_error(None, 'Выберите тег')
+            self.add_error(None, '   • Выберите тег')
         return self.cleaned_data
 
 
