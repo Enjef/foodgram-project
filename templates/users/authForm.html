@@ -31,6 +31,7 @@
                     <span class="form__error">{{ form.password.errors }}</span>
                 </div>
             </div>
+            {{ form.non_field_errors }}
             <div class="form__footer">
                 <button class="button button_style_blue">Войти</button>
                 <a class="form__forgot-link" href="{% url 'password_reset' %}">Забыли пароль?</a>
