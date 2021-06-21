@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import (AuthenticationForm, PasswordChangeForm,
                                        PasswordResetForm, UserCreationForm)
 from django.core.exceptions import ValidationError
-from django.shortcuts import get_object_or_404
+
 
 User = get_user_model()
 
