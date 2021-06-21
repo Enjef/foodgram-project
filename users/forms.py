@@ -15,8 +15,7 @@ class CreationForm(UserCreationForm):
 
     def clean(self):
         email = self.cleaned_data.get('email')
-        dubble = get_object_or_404(User, email=email)
-        if dubble:
+        if User.objects.filter(email=email).exists():
             raise ValidationError('Email уже используется')
         return self.cleaned_data
 
