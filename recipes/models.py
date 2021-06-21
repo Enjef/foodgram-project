@@ -1,11 +1,11 @@
 import uuid
 
-from django.contrib.auth import get_user_model
+from users.models import CustomUser
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.urls import reverse
 
-User = get_user_model()
+User = CustomUser
 
 
 class Ingredient(models.Model):
