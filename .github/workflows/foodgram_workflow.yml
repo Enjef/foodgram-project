@@ -72,7 +72,6 @@ jobs:
           echo EMAIL_PORT=${{ secrets.EMAIL_PORT }} >> .env
           echo EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }} >> .env
           echo EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }} >> .env
-          echo EMAIL_USE_TLS=${{ secrets.EMAIL_USE_TLS }} >> .env
           echo EMAIL_USE_SSL=${{ secrets.EMAIL_USE_SSL }} >> .env
           sudo docker-compose up -d
 
