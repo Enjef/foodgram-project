@@ -30,7 +30,6 @@ class Logout(LogoutView):
 class PasswordReset(PasswordResetView):
     form_class = CustomPasswordResetForm
     template_name = 'users/resetPassword.html'
-    domain = 'sprint.ml'
 
 
 class PasswordResetDone(PasswordResetDoneView):

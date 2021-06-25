@@ -161,3 +161,5 @@ DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
 
 PAGE_SIZE_INDEX = 6
 PAGE_SIZE_CART = 12
+
+SITE_NAME = 'sprint.ml'
