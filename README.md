@@ -60,3 +60,4 @@ sudo docker-compose exec web python manage.py createsuperuser
 | TELEGRAM_TOKEN | токен телеграм-бота для отправки сообщений |
 | SECRET_KEY | settings.SECRET_KEY |
 | DEBUG | False |
+
