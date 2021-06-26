@@ -30,6 +30,7 @@ class Logout(LogoutView):
 
 class PasswordReset(PasswordResetView):
     form_class = CustomPasswordResetForm
+    subject_template_name = 'users/password_reset_subject.txt'
     email_template_name = 'users/password_reset_email.html'
     template_name = 'users/resetPassword.html'
 
