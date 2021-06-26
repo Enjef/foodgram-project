@@ -1,7 +1,7 @@
 from django.urls import path, include
 from users.views import (
     Logout, SignUp, Login, PasswordReset, PasswordChange, PasswordResetDone,
-    PasswordChangeDone
+    PasswordChangeDone, PasswordResetComplete, PasswordResetConfirm
 )
 
 urlpatterns = [
@@ -19,6 +19,16 @@ urlpatterns = [
         'password_change/done/',
         PasswordChangeDone.as_view(),
         name='password_change_done'
+    ),
+    path(
+        'reset/done/',
+        PasswordResetComplete.as_view(),
+        name='password_reset_complete'
+    ),
+    path(
+        'reset/<uidb64>/<token>/',
+        PasswordResetConfirm.as_view(),
+        name='password_reset_confirm'
     ),
     path('', include('django.contrib.auth.urls')),
 ]
