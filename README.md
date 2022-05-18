@@ -2,7 +2,7 @@
 # Проект: foodgram-project
 foodgram-project\
 Доступен по адресу: -\
-Доступен по IP: -\
+Доступен по IP: -
 
 ### Описание
 После выполнения установки в четырех docker-контейнерах(nginx, certbot, PostgreSQL и Django) будет развёрнут проект foodgram.
